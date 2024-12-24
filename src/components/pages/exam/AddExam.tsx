@@ -1,9 +1,9 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppDispatch } from '@/redux/reduxHook';
+import { useAppDispatch, useAppSelector } from '@/redux/reduxHook';
 import { addExamApi } from '@/redux/Exam/addExamReducer';
 
 const questionSchema = z.object({
@@ -27,6 +27,7 @@ const formSchema = z.object({
 type FormInputs = z.infer<typeof formSchema>;
 
 const AddQuestionForm: React.FC = () => {
+    const {data:Exam} = useAppSelector((store) => store.addExamReducer)
 
     const dispatch = useAppDispatch();
 
@@ -56,8 +57,16 @@ const AddQuestionForm: React.FC = () => {
     });
 
     const onSubmit = (data: FormInputs) => {
-        dispatch(addExamApi(data));
+        dispatch(addExamApi(data)).then(()=>{
+            // alert(`copy exam id to share: ${Exam.id}`)
+        });
     };
+
+    useEffect(()=>{
+        if(Exam?.examid){
+            alert(`copy exam id to share: ${Exam.examid}`)
+        }
+    },[Exam])
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
