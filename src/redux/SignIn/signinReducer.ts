@@ -32,11 +32,11 @@ export const signInApi = createAsyncThunk(
             toast.success(response?.data?.msg);
             localStorage.setItem("Token",response?.data?.token);
             localStorage.setItem("Role",response?.data?.role);
-            // if (response?.data?.role == "admin") {
-            //     window.location.href = "/add-exam";
-            // } else {
-            //     window.location.href = "/enter-id";
-            // }
+            if (response?.data?.role == "admin") {
+                window.location.href = "/add-exam";
+            } else {
+                window.location.href = "/enter-id";
+            }
           }
           return await response.data;
       } catch (error: any) {
