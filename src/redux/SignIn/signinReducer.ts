@@ -27,7 +27,7 @@ export const signInApi = createAsyncThunk(
   "SignIn",
   async(data: SignInFields,{rejectWithValue}) =>{
       try {
-          const response = await axios.post(`${process.env.NEXT_PUBLIC_baseURL}/api/auth/login`,data)
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_baseURL}/auth/login`,data)
           if(response?.data?.token){
             toast.success(response?.data?.msg);
             localStorage.setItem("Token",response?.data?.token);
