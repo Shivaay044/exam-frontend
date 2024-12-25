@@ -27,16 +27,16 @@ export const signInApi = createAsyncThunk(
   "SignIn",
   async(data: SignInFields,{rejectWithValue}) =>{
       try {
-          const response = await axios.post(`http://localhost:8000/api/auth/login`,data)
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_baseURL}/api/auth/login`,data)
           if(response?.data?.token){
             toast.success(response?.data?.msg);
             localStorage.setItem("Token",response?.data?.token);
             localStorage.setItem("Role",response?.data?.role);
-            if (response?.data?.role == "admin") {
-                window.location.href = "/add-exam";
-            } else {
-                window.location.href = "/enter-id";
-            }
+            // if (response?.data?.role == "admin") {
+            //     window.location.href = "/add-exam";
+            // } else {
+            //     window.location.href = "/enter-id";
+            // }
           }
           return await response.data;
       } catch (error: any) {

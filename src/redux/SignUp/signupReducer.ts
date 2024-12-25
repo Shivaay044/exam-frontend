@@ -28,7 +28,7 @@ export const signUpApi = createAsyncThunk(
   "SignUp",
   async(data: SignUpFields,{rejectWithValue}) =>{
       try {
-          const response = await axios.post(`http://localhost:8000/api/auth/register`,data)
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_baseURL}/api/auth/register`,data)
            if(response.status == 200){
                 window.location.href = "/"
            }
