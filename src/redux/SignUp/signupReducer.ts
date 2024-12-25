@@ -29,9 +29,10 @@ export const signUpApi = createAsyncThunk(
   async(data: SignUpFields,{rejectWithValue}) =>{
       try {
           const response = await axios.post(`http://localhost:8000/api/auth/register`,data)
-          if(response?.data?.token){
+           if(response.status == 200){
+                window.location.href = "/"
+           }
             toast.success(response?.data?.msg);
-            }
           return await response.data;
       } catch (error: any) {
         toast.error(error.response?.data?.msg);
