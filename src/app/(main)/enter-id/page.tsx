@@ -35,7 +35,7 @@ const IdForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg space-y-4"
     >
-      <h1 className="text-2xl font-bold text-gray-800">Enter ID</h1>
+      <h1 className="text-2xl font-bold text-gray-800">Enter Exam ID</h1>
 
       <div className="space-y-2">
         <label htmlFor="id" className="block text-sm font-medium text-gray-700">
