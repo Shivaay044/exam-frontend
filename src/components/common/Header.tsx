@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react'
 
 function Header() {
 
+  const [token,setToken] = useState<string|null>(null)
+
     const path = [
         {id:"login",title:"Login", link:"/"},
         {id:"signUp",title:"SignUp", link:"/signup"},
@@ -23,6 +25,7 @@ function Header() {
     
     
    useEffect(()=>{
+    setToken(localStorage.getItem("Token")??null)
     const userRole =  localStorage.getItem("Role") ?? null;
        if(userRole == "admin"){
         console.log("helloooo")
@@ -40,7 +43,7 @@ function Header() {
         ))
       }
       {
-        localStorage.getItem("Token") && <button className='absolute end-4 top-2 bg-blue-500 rounded-xl px-4 py-2' onClick={()=>{localStorage.clear(); window.location.href="/"}}>Logout</button>
+        token && <button className='absolute end-4 top-2 bg-blue-500 rounded-xl px-4 py-2' onClick={()=>{localStorage.clear(); window.location.href="/"}}>Logout</button>
       }
     </div>
   )
