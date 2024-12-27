@@ -44,7 +44,7 @@ const MultipleChoiceExamForm: React.FC = () => {
     formState: { errors },
   } = useForm<FormInputs>({
     resolver: zodResolver(formSchema),
-    defaultValues: data,
+    defaultValues:  data,
   });
 
   const onSubmit = (formData: FormInputs) => {
